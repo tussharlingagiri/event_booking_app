@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Event</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Set black background for the page */
+        body {
+            background-color: black;
+            color: white; /* Optional: Set text color to white for better contrast */
+            margin: 0; /* Remove default margin */
+            padding: 20px; /* Add padding for better spacing */
+            font-family: Arial, sans-serif; /* Optional: Choose a font */
+        }
+
+        /* CSS for the container */
+        .container {
+            max-width: 600px; /* Set a maximum width for the container */
+            margin: 0 auto; /* Center the container horizontally */
+        }
+
+        /* CSS for the form */
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Set a different font size for small screens */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 24px;
+            }
+        }
+
+        /* CSS for the input fields */
+        label {
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="submit"] {
+            padding: 8px;
+            margin-bottom: 10px;
+            border: none;
+            border-bottom: 1px solid white;
+            background-color: transparent;
+            color: white;
+            font-size: 16px;
+        }
+
+        /* Set a different font size for small screens */
+        @media (max-width: 600px) {
+            input[type="text"],
+            input[type="number"],
+            input[type="submit"] {
+                font-size: 14px;
+            }
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            align-self: flex-end;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Event</h1>
+        <form method="POST">
+            <label for="event_date">Event Date:</label>
+            <input type="text" name="event_date" value="{{ event[1] }}" required><br>
+            <label for="lunch_dinner">Lunch/Dinner:</label>
+            <input type="text" name="lunch_dinner" value="{{ event[2] }}" required><br>
+            <label for="event_type">Event Type:</label>
+            <input type="text" name="event_type" value="{{ event[3] }}" required><br>
+            <label for="floor">Floor:</label>
+            <input type="text" name="floor" value="{{ event[4] }}" required><br>
+            <label for="event_cost">Event Cost:</label>
+            <input type="number" name="event_cost" value="{{ event[5] }}" required><br>
+            <label for="maintenance">Maintenance:</label>
+            <input type="text" name="maintenance" value="{{ event[6] }}" required><br>
+            <label for="adv_received">Adv Received:</label>
+            <input type="number" name="adv_received" value="{{ event[7] }}" required><br>
+            <label for="members">Members:</label>
+            <input type="number" name="members" value="{{ event[8] }}" required><br>
+            <input type="submit" value="Update Event">
+        </form>
+    </div>
+</body>
+</html>
+

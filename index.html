@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Event Booking App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Set black background for the page */
+        body {
+            background-color: black;
+            color: white; /* Optional: Set text color to white for better contrast */
+            margin: 0; /* Remove default margin */
+            padding: 20px; /* Add padding for better spacing */
+            font-family: Arial, sans-serif; /* Optional: Choose a font */
+        }
+
+        /* CSS for the container */
+        .container {
+            display: flex;
+            flex-direction: column;
+            max-width: 1200px; /* Set a maximum width for the container */
+            margin: 0 auto; /* Center the container horizontally */
+        }
+
+        /* CSS for the table */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid white;
+            padding: 8px;
+            text-align: center;
+        }
+
+        /* Set a different font size for small screens */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 24px;
+            }
+
+            th, td {
+                font-size: 12px;
+                padding: 5px;
+            }
+        }
+
+        /* CSS for the "Add New Event" button */
+        .add-button {
+            margin-top: 10px;
+            align-self: flex-end;
+        }
+
+        /* Set a different font size for small screens */
+        @media (max-width: 600px) {
+            .add-button button {
+                font-size: 14px;
+                padding: 5px 10px;
+            }
+        }
+
+        /* CSS for the "Edit" button */
+        .edit-button, .add-button button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 2px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Event Booking App</h1>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Event Date</th>
+                <th>Lunch/Dinner</th>
+                <th>Event Type</th>
+                <th>Floor</th>
+                <th>Event Cost</th>
+                <th>Maintenance</th>
+                <th>Adv Received</th>
+                <th>Members</th>
+                <th>Edit</th>
+            </tr>
+            {% for event in events %}
+            <tr>
+                <td>{{ event[0] }}</td>
+                <td>{{ event[1] }}</td>
+                <td>{{ event[2] }}</td>
+                <td>{{ event[3] }}</td>
+                <td>{{ event[4] }}</td>
+                <td>{{ event[5] }}</td>
+                <td>{{ event[6] }}</td>
+                <td>{{ event[7] }}</td>
+                <td>{{ event[8] }}</td>
+                <td>
+                    <button class="edit-button" onclick="window.location='{{ url_for('edit_event_page', event_id=event[0]) }}'">Edit</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <div class="add-button">
+            <button onclick="window.location='{{ url_for('add_event_page') }}'">Add New Event</button>
+        </div>
+    </div>
+</body>
+</html>
+
