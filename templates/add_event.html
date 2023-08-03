@@ -3,6 +3,7 @@
 <head>
     <title>Add New Event</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <style>
         /* Set black background for the page */
         body {
@@ -39,6 +40,8 @@
 
         input[type="text"],
         input[type="number"],
+        select, /* Add the select dropdown field */
+        input[type="date"], /* Add the date input field */
         input[type="submit"] {
             padding: 8px;
             margin-bottom: 10px;
@@ -47,12 +50,15 @@
             background-color: transparent;
             color: white;
             font-size: 16px;
+            width: 100%; /* Ensure the input fields take up the full width */
         }
 
         /* Set a different font size for small screens */
         @media (max-width: 600px) {
             input[type="text"],
             input[type="number"],
+            select,
+            input[type="date"],
             input[type="submit"] {
                 font-size: 14px;
             }
@@ -71,9 +77,14 @@
         <h1>Add New Event</h1>
         <form method="POST" action="{{ url_for('add_event_page') }}">
             <label for="event_date">Event Date:</label>
-            <input type="text" name="event_date" required><br>
-            <label for="lunch_dinner">Lunch/Dinner:</label>
-            <input type="text" name="lunch_dinner" required><br>
+            <!-- Use type="date" for the event_date input field -->
+            <input type="date" name="event_date" required><br>
+            <label for="meal_type">Meal Type:</label>
+            <!-- Use select dropdown for meal type selection -->
+            <select name="meal_type" required>
+                <option value="Lunch">Lunch</option>
+                <option value="Dinner">Dinner</option>
+            </select><br>
             <label for="event_type">Event Type:</label>
             <input type="text" name="event_type" required><br>
             <label for="floor">Floor:</label>
@@ -89,6 +100,14 @@
             <input type="submit" value="Add Event">
         </form>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        flatpickr("input[type='date']", {
+            dateFormat: "Y-m-d", // Specify the date format
+            enableTime: false, // Set this to true if you want to include time as well
+            // Add any other options as needed
+        });
+    </script>
 </body>
 </html>
 

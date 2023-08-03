@@ -3,6 +3,8 @@
 <head>
     <title>Edit Event</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <style>
         /* Set black background for the page */
         body {
@@ -39,6 +41,7 @@
 
         input[type="text"],
         input[type="number"],
+        select,
         input[type="submit"] {
             padding: 8px;
             margin-bottom: 10px;
@@ -53,6 +56,7 @@
         @media (max-width: 600px) {
             input[type="text"],
             input[type="number"],
+            select,
             input[type="submit"] {
                 font-size: 14px;
             }
@@ -71,9 +75,13 @@
         <h1>Edit Event</h1>
         <form method="POST">
             <label for="event_date">Event Date:</label>
-            <input type="text" name="event_date" value="{{ event[1] }}" required><br>
-            <label for="lunch_dinner">Lunch/Dinner:</label>
-            <input type="text" name="lunch_dinner" value="{{ event[2] }}" required><br>
+            <!-- Use Flatpickr for date selection -->
+            <input type="text" name="event_date" id="event_date" value="{{ event[1] }}" required><br>
+            <label for="meal_type">Meal Type:</label>
+            <select name="meal_type" required>
+                <option value="Lunch" {% if event[2] == 'Lunch' %}selected{% endif %}>Lunch</option>
+                <option value="Dinner" {% if event[2] == 'Dinner' %}selected{% endif %}>Dinner</option>
+            </select><br>
             <label for="event_type">Event Type:</label>
             <input type="text" name="event_type" value="{{ event[3] }}" required><br>
             <label for="floor">Floor:</label>
@@ -89,6 +97,13 @@
             <input type="submit" value="Update Event">
         </form>
     </div>
+    <script>
+        // Initialize Flatpickr for date selection
+        flatpickr('#event_date', {
+            enableTime: false,
+            dateFormat: 'Y-m-d',
+            minDate: 'today'
+        });
+    </script>
 </body>
 </html>
-
