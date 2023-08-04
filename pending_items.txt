@@ -1,0 +1,6 @@
+capture customer information
+add next, back buttons to data capture screens
+add authentication
+add guest login for read accessible
+introduce audit table
+enable branch protection
